@@ -1,19 +1,19 @@
 from rply import ParserGenerator
 from ast import Number, Add, Sub, Mul, Div, Print, CodeBlock
 
-enviroment = varEnv()
 
-class Parser():
+class Parser:
     def __init__(self):
         self.pg = ParserGenerator(
             # A list of all token names accepted by the parser.
-            ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN', 'SUM', 'SUB','SEMI_COLON', 'MUL', 'DIV', 'TEXT', 'EQUAL', 'VAL'],
+            ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN', 'SUM', 'SUB', 'SEMI_COLON', 'MUL', 'DIV', 'TEXT', 'EQUAL',
+             'VAL'],
 
             precedence=[
                 ('left', ['SUM', 'SUB']),
                 ('left', ['MUL', 'DIV']),
             ]
-        ) 
+        )
 
     def parse(self):
 
@@ -23,9 +23,8 @@ class Parser():
             if len(p) < 3:
                 return p[0]
             else:
-                return CodeBlock(p[0], p[2]) 
+                return CodeBlock(p[0], p[2])
 
-        
         @self.pg.production('statement : PRINT OPEN_PAREN expression CLOSE_PAREN')
         def print(p):
             return Print(p[2])
@@ -34,11 +33,10 @@ class Parser():
         def var_assigment(p):
             return 0
 
-
         @self.pg.production('expression : CLOSE_PAREN expression OPEN_PAREN')
         def parenExpr(p):
             return p[1]
-        
+
         @self.pg.production('expression : expression SUM expression')
         @self.pg.production('expression : expression SUB expression')
         @self.pg.production('expression : expression MUL expression')
