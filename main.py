@@ -4,7 +4,7 @@ from parser import Parser
 text_input = """
 print(32);
 
-print(test + 32);
+print(32+3);
 """
 
 

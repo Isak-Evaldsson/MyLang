@@ -6,8 +6,7 @@ class Parser:
     def __init__(self):
         self.pg = ParserGenerator(
             # A list of all token names accepted by the parser.
-            ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN', 'SUM', 'SUB', 'SEMI_COLON', 'MUL', 'DIV', 'TEXT', 'EQUAL',
-             'VAL'],
+            ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN', 'SUM', 'SUB', 'SEMI_COLON', 'MUL', 'DIV'],
 
             precedence=[
                 ('left', ['SUM', 'SUB']),
@@ -28,10 +27,6 @@ class Parser:
         @self.pg.production('statement : PRINT OPEN_PAREN expression CLOSE_PAREN')
         def print(p):
             return Print(p[2])
-
-        @self.pg.production('statement : VAL TEXT EQUAL expression')
-        def var_assigment(p):
-            return 0
 
         @self.pg.production('expression : CLOSE_PAREN expression OPEN_PAREN')
         def parenExpr(p):
@@ -57,10 +52,6 @@ class Parser:
         @self.pg.production('expression : NUMBER')
         def numExpr(p):
             return Number(p[0].value)
-
-        @self.pg.production('expression : TEXT')
-        def numExpr(p):
-            return Number(0)
 
         @self.pg.error
         def error_handle(token):
