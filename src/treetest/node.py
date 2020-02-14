@@ -1,4 +1,4 @@
-class nodeTree:
+class TreeNode:
     def __init__(self, name, *children):
         self.name, self.children = name, children
 
