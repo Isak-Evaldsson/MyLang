@@ -1,5 +1,5 @@
-from src.lexer import Lexer
-from src.parser import Parser
+from mylang.lexer import Lexer
+from mylang.parser import Parser
 
 
 class Compiler:

@@ -1,4 +1,4 @@
-from src.compiler import Compiler
+from mylang.compiler import Compiler
 
 text_input = """
 print(32);

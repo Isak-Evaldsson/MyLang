@@ -1,5 +1,5 @@
 from rply import ParserGenerator
-from src.ast import Number, Add, Sub, Mul, Div, Print, CodeBlock
+from mylang.ast import Number, Add, Sub, Mul, Div, Print, CodeBlock
 
 
 class Parser:
